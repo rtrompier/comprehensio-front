@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { CaregiverHomePage } from './home.page';
-import { HomePageService } from './home.service';
 
 @NgModule({
   imports: [
@@ -24,8 +23,5 @@ import { HomePageService } from './home.service';
   declarations: [
     CaregiverHomePage,
   ],
-  providers: [
-    HomePageService,
-  ]
 })
 export class CaregiverHomePageModule {}

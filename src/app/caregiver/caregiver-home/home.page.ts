@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HomePageService } from './home.service';
 import { Router } from '@angular/router';
+import { TransactionService } from 'src/app/common/transaction/transaction.service';
+import { Transaction } from 'src/app/common/transaction/transaction.model';
 
 @Component({
   selector: 'app-caregiver-home',
@@ -18,7 +19,7 @@ export class CaregiverHomePage implements OnInit {
   public selectedTo = this.langs[0];
 
   constructor(
-    private homePageService: HomePageService,
+    private transactionService: TransactionService,
     private router: Router,
   ) {
   }
@@ -26,10 +27,12 @@ export class CaregiverHomePage implements OnInit {
   ngOnInit() { }
 
   public createTransaction() {
-    this.homePageService.createTransaction(this.selectedFrom, this.selectedTo)
-      .subscribe((transaction) => {
-        debugger;
-        this.router.navigate(['/caregiver/start', transaction.id], {queryParams: {from: this.selectedFrom.label, to: this.selectedTo.label}, queryParamsHandling: 'merge'});
+    const transaction = new Transaction();
+    transaction.fromLang = this.selectedFrom;
+    transaction.toLang = this.selectedTo;
+    this.transactionService.createTransaction(transaction)
+      .subscribe((t) => {
+        this.router.navigate(['/caregiver/start', t.id], {queryParams: {from: this.selectedFrom.label, to: this.selectedTo.label}, queryParamsHandling: 'merge'});
       });
   }
 }

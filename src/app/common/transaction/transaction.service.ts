@@ -15,4 +15,8 @@ export class TransactionService {
     public updateTransaction(transaction: Transaction): Observable<Transaction> {
         return this.httpClient.put<Transaction>(`${environment.api}/transactions/${transaction.id}`, transaction);
     }
+
+    public createTransaction(transaction: Transaction): Observable<Transaction> {
+        return this.httpClient.post<Transaction>(`${environment.api}/transactions`, transaction);
+    }
 }
