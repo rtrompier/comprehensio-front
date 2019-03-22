@@ -17,11 +17,11 @@ import { TransactionResolver } from './interpreter-start/start.resolver';
         path: '',
         component: InterpreterPage,
         children: [
-          {path: 'home', loadChildren: './interpreter-home/home.module#InterpreterHomePageModule'},
-          {path: 'start/:id', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule', resolve: { transaction: TransactionResolver}},
-          {path: 'recap', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule'},
-          {path: 'end', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule'},
-          {path: '**', redirectTo: 'home'},
+          { path: 'home', loadChildren: './interpreter-home/home.module#InterpreterHomePageModule' },
+          { path: 'start/:id', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule', resolve: { transaction: TransactionResolver } },
+          { path: 'recap', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule' },
+          { path: 'end', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule' },
+          { path: '**', redirectTo: 'home' },
         ]
       },
     ])
@@ -31,4 +31,4 @@ import { TransactionResolver } from './interpreter-start/start.resolver';
     TransactionResolver
   ]
 })
-export class InterpreterPageModule {}
+export class InterpreterPageModule { }

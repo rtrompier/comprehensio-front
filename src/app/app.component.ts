@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { AuthService } from './auth/auth.service';
+import { NotifService } from './common/notif/notif.service';
 
 
 @Component({
@@ -18,11 +19,13 @@ export class AppComponent {
     }
   ];
 
+  public notif: any[] = [];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService,
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
