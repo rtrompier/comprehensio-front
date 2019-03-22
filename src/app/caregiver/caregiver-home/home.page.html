@@ -1,1 +1,22 @@
-Caregiver Home
+<ion-card>
+    <ion-card-header>
+        <ion-card-subtitle>Demande de traduction</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-label>De</ion-label>
+        <ion-select placeholder="Select One" interface="popover" [(ngModel)]="selectedFrom">
+            <ion-select-option value="fr">FR</ion-select-option>
+            <ion-select-option value="en">EN</ion-select-option>
+        </ion-select>
+
+        <ion-label>Vers</ion-label>
+        <ion-select placeholder="Select One" interface="popover" [(ngModel)]="selectedTo">
+            <ion-select-option value="fr">FR</ion-select-option>
+            <ion-select-option value="en">EN</ion-select-option>
+        </ion-select>
+    </ion-card-content>
+</ion-card>
+
+
+<ion-button color="primary" [routerLink]="['/caregiver/start']" [queryParams]="{from: selectedFrom, to: selectedTo}"
+    queryParamsHandling="merge">Rechercher</ion-button>

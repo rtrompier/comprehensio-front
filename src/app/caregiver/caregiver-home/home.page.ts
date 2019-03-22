@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CaregiverHomePage implements OnInit {
 
+  public selectedFrom = 'en';
+  public selectedTo = 'fr';
+
   constructor() {
   }
 

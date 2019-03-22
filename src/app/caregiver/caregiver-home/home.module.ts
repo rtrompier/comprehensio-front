@@ -18,6 +18,8 @@ import { CaregiverHomePage } from './home.page';
       }
     ])
   ],
-  declarations: [CaregiverHomePage]
+  declarations: [
+    CaregiverHomePage,
+  ]
 })
 export class CaregiverHomePageModule {}
