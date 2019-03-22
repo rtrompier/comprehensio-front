@@ -14,8 +14,15 @@ import { CaregiverPage } from './caregiver.page';
     RouterModule.forChild([
       {
         path: '',
-        component: CaregiverPage
-      }
+        component: CaregiverPage,
+        children: [
+          {path: 'home', loadChildren: './caregiver-home/home.module#CaregiverHomePageModule'},
+          {path: 'start', loadChildren: './caregiver-start/start.module#CaregiverStartPageModule'},
+          {path: 'recap', loadChildren: './caregiver-recap/recap.module#CaregiverRecapPageModule'},
+          {path: 'end', loadChildren: './caregiver-end/end.module#CaregiverEndPageModule'},
+          {path: '**', redirectTo: 'home'},
+        ]
+      },
     ])
   ],
   declarations: [CaregiverPage]

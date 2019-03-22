@@ -14,8 +14,15 @@ import { InterpreterPage } from './interpreter.page';
     RouterModule.forChild([
       {
         path: '',
-        component: InterpreterPage
-      }
+        component: InterpreterPage,
+        children: [
+          {path: 'home', loadChildren: './interpreter-home/home.module#InterpreterHomePageModule'},
+          {path: 'start', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule'},
+          {path: 'recap', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule'},
+          {path: 'end', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule'},
+          {path: '**', redirectTo: 'home'},
+        ]
+      },
     ])
   ],
   declarations: [InterpreterPage]
