@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Transaction } from 'src/app/common/transaction/transaction.model';
+import { TransactionService } from 'src/app/common/transaction/transaction.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-interpreter-start',
@@ -7,8 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterpreterStartPage implements OnInit {
 
-  constructor() {
+  public transaction: Transaction;
+
+  constructor(
+    private route: ActivatedRoute,
+    private transactionService: TransactionService,
+    private userService: TransactionService,
+  ) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.transaction = this.route.snapshot.data.transaction;
+  }
+
+  public startTransaction(): void {
+    this.transaction.startDate = new Date();
+    this.transactionService.updateTransaction(this.transaction).subscribe((transaction) => {
+      this.transaction = transaction;
+      // call the caregiver
+      window.open(`facetime://${transaction.caller.email}`, '_blank');
+    });
+  }
 }

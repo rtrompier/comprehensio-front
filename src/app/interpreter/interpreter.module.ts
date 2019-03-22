@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { InterpreterPage } from './interpreter.page';
+import { TransactionResolver } from './interpreter-start/start.resolver';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { InterpreterPage } from './interpreter.page';
         component: InterpreterPage,
         children: [
           {path: 'home', loadChildren: './interpreter-home/home.module#InterpreterHomePageModule'},
-          {path: 'start', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule'},
+          {path: 'start/:id', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule', resolve: { transaction: TransactionResolver}},
           {path: 'recap', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule'},
           {path: 'end', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule'},
           {path: '**', redirectTo: 'home'},
@@ -25,6 +26,9 @@ import { InterpreterPage } from './interpreter.page';
       },
     ])
   ],
-  declarations: [InterpreterPage]
+  declarations: [InterpreterPage],
+  providers: [
+    TransactionResolver
+  ]
 })
 export class InterpreterPageModule {}
