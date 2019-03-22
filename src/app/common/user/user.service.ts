@@ -9,7 +9,7 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public saveUser(): Observable<User> {
-        return this.httpClient.post<User>(`${environment.api}/users`, null);
+    public saveUser(user?: User): Observable<User> {
+        return this.httpClient.post<User>(`${environment.api}/users`, user);
     }
 }

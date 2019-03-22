@@ -5,6 +5,8 @@ import { User } from '../common/user/user.model';
 import { UserService } from '../common/user/user.service';
 import { KeycloakConfig } from './keycloak-config.model';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const Keycloak = Keycloak_;
 
@@ -20,7 +22,7 @@ export class AuthService {
     private isAuth = new BehaviorSubject<boolean>(false);
 
     constructor(
-        private userService: UserService,
+        private httpClient: HttpClient,
     ) { }
 
     public isAuthenticated(): Observable<boolean> {
@@ -66,6 +68,10 @@ export class AuthService {
         return this.userProfile;
     }
 
+    public setUserProfile(user: User): void {
+        this.userProfile = user;
+    }
+
     public getAccessToken(): string {
         return sessionStorage.getItem(this.TOKEN_KEY) || this.keycloak.token;
     }
@@ -79,7 +85,7 @@ export class AuthService {
 
     private onAuthSuccess(): Promise<any> {
         this.keycloak.token = this.getAccessToken();
-        return this.userService.saveUser()
+        return this.httpClient.get<User>(`${environment.api}/login`)
             .pipe(
                 tap((usr: User) => {
                     this.userProfile = usr;

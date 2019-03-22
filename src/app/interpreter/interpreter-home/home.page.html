@@ -1,1 +1,10 @@
-Interpreter Home
+<ion-content>
+    <ion-button expand="block" (click)="updateAvalaibility(true)">
+        <ion-icon *ngIf="user.isAvailable" slot="start" name="checkmark"></ion-icon>
+        Je suis disponible
+    </ion-button>
+    <ion-button expand="block" color="secondary"  (click)="updateAvalaibility(false)">
+        <ion-icon  *ngIf="!user.isAvailable" slot="start" name="checkmark"></ion-icon>
+        Je suis indisponible
+    </ion-button>
+</ion-content>
