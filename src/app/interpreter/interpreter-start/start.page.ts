@@ -26,6 +26,7 @@ export class InterpreterStartPage implements OnInit {
 
   public startTransaction(): void {
     this.transaction.startDate = new Date();
+    this.transaction.state = 'IN_PROGRESS';
     this.transactionService.updateTransaction(this.transaction).subscribe((transaction) => {
       this.transaction = transaction;
       // call the caregiver

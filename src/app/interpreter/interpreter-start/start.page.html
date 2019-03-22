@@ -1,5 +1,9 @@
 <ion-content>
     {{transaction | json}}
 
-    <ion-button expand="block" color="secondary" (click)="startTransaction()">Démarrer</ion-button>
+    <div *ngIf="transaction.state !== 'PENDING'">
+        Cette demande n'est plus active. L'un de vos confrères a été plus rapide ;).
+    </div>
+
+    <ion-button expand="block" color="secondary" (click)="startTransaction()" *ngIf="transaction.state === 'PENDING'">Démarrer</ion-button>
 </ion-content>
