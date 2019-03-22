@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotifService } from '../common/notif/notif.service';
+import { Transaction } from '../common/transaction/transaction.model';
 
 @Component({
   selector: 'app-interpreter',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterpreterPage implements OnInit {
 
-  constructor() { }
+  public notifs: Transaction[] = [];
 
-  ngOnInit() { }
+  constructor(
+    private notifService: NotifService,
+  ) { }
+
+  public ngOnInit() {
+    this.notifService.notif$.subscribe((notif) => {
+      console.log(notif);
+      this.notifs.push(notif);
+    });
+  }
 }

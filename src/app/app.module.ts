@@ -14,6 +14,7 @@ import { SharedModule } from './common/common.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotifService } from './common/notif/notif.service';
 
 export function initKeycloak(authService: AuthService) {
   return () => authService.init({
@@ -41,6 +42,7 @@ export function initKeycloak(authService: AuthService) {
     StatusBar,
     SplashScreen,
     AuthService,
+    NotifService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: APP_INITIALIZER, useFactory: initKeycloak, multi: true, deps: [AuthService] },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
