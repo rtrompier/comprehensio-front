@@ -22,11 +22,11 @@ export class AuthGuard implements CanActivate {
                     }
 
                     const u = this.authService.getUserProfile();
-                    const roles = u.roles.map((rol) => rol.id).join(', ');
+                    const roles = u.roles && u.roles.map((rol) => rol.id).join(', ');
 
-                    if (roles.includes('caregiver')) {
+                    if (roles && roles.includes('caregiver')) {
                         this.router.navigate(['/caregiver']);
-                    } else if (roles.includes('interpreter')) {
+                    } else if (roles && roles.includes('interpreter')) {
                         this.router.navigate(['/interpreter']);
                     }
                     return isAuth;
