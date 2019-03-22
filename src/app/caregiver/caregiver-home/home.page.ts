@@ -9,8 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CaregiverHomePage implements OnInit {
 
-  public selectedFrom = 'ENG';
-  public selectedTo = 'FRA';
+  public langs = [
+    {id: 'FRA', label: 'Français'},
+    {id: 'ENG', label: 'Anglais'},
+  ];
+
+  public selectedFrom = this.langs[1];
+  public selectedTo = this.langs[0];
 
   constructor(
     private homePageService: HomePageService,
@@ -24,7 +29,7 @@ export class CaregiverHomePage implements OnInit {
     this.homePageService.createTransaction(this.selectedFrom, this.selectedTo)
       .subscribe((transaction) => {
         debugger;
-        this.router.navigate(['/caregiver/start', transaction.id], {queryParams: {from: this.selectedFrom, to: this.selectedTo}, queryParamsHandling: 'merge'});
+        this.router.navigate(['/caregiver/start', transaction.id], {queryParams: {from: this.selectedFrom.label, to: this.selectedTo.label}, queryParamsHandling: 'merge'});
       });
   }
 }

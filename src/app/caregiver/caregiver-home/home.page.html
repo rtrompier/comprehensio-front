@@ -3,17 +3,19 @@
         <ion-card-subtitle>Demande de traduction</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-        <ion-label>De</ion-label>
-        <ion-select placeholder="Select One" interface="popover" [(ngModel)]="selectedFrom">
-            <ion-select-option value="FRA">FRA</ion-select-option>
-            <ion-select-option value="ENG">ENG</ion-select-option>
-        </ion-select>
+        <mat-form-field appearance="outline">
+            <mat-label>De</mat-label>
+            <mat-select [(ngModel)]="selectedFrom">
+                <mat-option *ngFor="let lang of langs" [value]="lang">{{lang.label}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-        <ion-label>Vers</ion-label>
-        <ion-select placeholder="Select One" interface="popover" [(ngModel)]="selectedTo">
-            <ion-select-option value="FRA">FRA</ion-select-option>
-            <ion-select-option value="ENG">ENG</ion-select-option>
-        </ion-select>
+        <mat-form-field appearance="outline">
+            <mat-label>Vers</mat-label>
+            <mat-select [(ngModel)]="selectedTo">
+                <mat-option *ngFor="let lang of langs" [value]="lang">{{lang.label}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </ion-card-content>
 </ion-card>
 
