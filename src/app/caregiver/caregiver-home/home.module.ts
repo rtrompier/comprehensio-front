@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { CaregiverHomePage } from './home.page';
+import { LangService } from 'src/app/common/lang/lang.service';
 
 @NgModule({
   imports: [
@@ -23,5 +24,6 @@ import { CaregiverHomePage } from './home.page';
   declarations: [
     CaregiverHomePage,
   ],
+  providers: [LangService]
 })
 export class CaregiverHomePageModule {}

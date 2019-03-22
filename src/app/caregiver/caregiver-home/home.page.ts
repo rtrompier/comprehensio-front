@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TransactionService } from 'src/app/common/transaction/transaction.service';
 import { Transaction } from 'src/app/common/transaction/transaction.model';
+import { LangService } from 'src/app/common/lang/lang.service';
+import { Lang } from 'src/app/common/lang/lang.module';
 
 @Component({
   selector: 'app-caregiver-home',
@@ -10,21 +12,26 @@ import { Transaction } from 'src/app/common/transaction/transaction.model';
 })
 export class CaregiverHomePage implements OnInit {
 
-  public langs = [
-    {id: 'FRA', label: 'Français'},
-    {id: 'ENG', label: 'Anglais'},
-  ];
+  public langs: Lang[];
 
-  public selectedFrom = this.langs[1];
-  public selectedTo = this.langs[0];
+  public selectedFrom: Lang;
+  public selectedTo: Lang;
 
   constructor(
     private transactionService: TransactionService,
     private router: Router,
+    private langService: LangService,
   ) {
   }
 
-  ngOnInit() { }
+  public ngOnInit() {
+    this.langService.getLangs()
+      .subscribe((langs) => {
+        this.langs = langs;
+        this.selectedFrom = this.langs.find((l) => l.id === 'fra');
+        this.selectedTo = this.langs.find((l) => l.id === 'eng');
+      });
+  }
 
   public createTransaction() {
     const transaction = new Transaction();
