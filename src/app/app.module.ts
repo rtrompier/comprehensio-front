@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 import { SharedModule } from './common/common.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function initKeycloak(authService: AuthService) {
   return () => authService.init({
@@ -34,6 +35,7 @@ export function initKeycloak(authService: AuthService) {
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     StatusBar,

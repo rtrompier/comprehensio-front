@@ -17,9 +17,9 @@ import { CaregiverPage } from './caregiver.page';
         component: CaregiverPage,
         children: [
           {path: 'home', loadChildren: './caregiver-home/home.module#CaregiverHomePageModule'},
-          {path: 'start', loadChildren: './caregiver-start/start.module#CaregiverStartPageModule'},
-          {path: 'recap', loadChildren: './caregiver-recap/recap.module#CaregiverRecapPageModule'},
-          {path: 'end', loadChildren: './caregiver-end/end.module#CaregiverEndPageModule'},
+          {path: 'start/:id', loadChildren: './caregiver-start/start.module#CaregiverStartPageModule'},
+          {path: 'recap/:id', loadChildren: './caregiver-recap/recap.module#CaregiverRecapPageModule'},
+          {path: 'end/:id', loadChildren: './caregiver-end/end.module#CaregiverEndPageModule'},
           {path: '**', redirectTo: 'home'},
         ]
       },
