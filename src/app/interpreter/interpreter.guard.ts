@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({
     providedIn: 'root',
 })
-export class CareGiverGuard implements CanActivate {
+export class InterpreterGuard implements CanActivate {
     constructor(
         private authService: AuthService,
     ) { }
@@ -22,7 +22,7 @@ export class CareGiverGuard implements CanActivate {
                     return this.authService.getUserProfile();
                 }),
                 map((user) => {
-                    const tmp = user.roles.findIndex((rol) => rol.id === 'caregiver');
+                    const tmp = user.roles.findIndex((rol) => rol.id === 'interpreter');
                     if (tmp !== -1) {
                         return true;
                     }

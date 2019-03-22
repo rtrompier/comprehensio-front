@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CareGiverGuard } from './caregiver/caregiver.guard';
+import { InterpreterGuard } from './interpreter/interpreter.guard';
 
 const routes: Routes = [
   {
@@ -14,12 +16,12 @@ const routes: Routes = [
   },
   {
     path: 'caregiver',
-    canActivate: [AuthGuard],
+    canActivate: [CareGiverGuard],
     loadChildren: './caregiver/caregiver.module#CaregiverPageModule'
   },
   {
     path: 'interpreter',
-    canActivate: [AuthGuard],
+    canActivate: [InterpreterGuard],
     loadChildren: './interpreter/interpreter.module#InterpreterPageModule'
   }
 ];
