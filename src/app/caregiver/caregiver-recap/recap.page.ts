@@ -28,6 +28,7 @@ export class CaregiverRecapPage implements OnInit {
     const transaction = new Transaction();
     transaction.id = this.transactionId;
     transaction.endDate = new Date();
+    transaction.state = 'CLOSE';
     this.transactionService.updateTransaction(transaction)
       .subscribe((t) => {
         this.router.navigate(['/caregiver/end', t.id]);

@@ -1,1 +1,1 @@
-export type State = 'INIT' | 'CLOSE' | 'IN_PROGRESS' | 'PENDING' | 'CANCELED';
+export type State = 'INIT' | 'CLOSE' | 'INPROGRESS' | 'PENDING' | 'CANCELED';

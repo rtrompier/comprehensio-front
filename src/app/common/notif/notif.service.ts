@@ -11,7 +11,7 @@ export class NotifService {
     private zone = new NgZone({ enableLongStackTrace: false });
 
     constructor() {
-        const source = new EventSource(`${environment.api}/transactions/sse/1`);
+        const source = new EventSource(`${environment.api}/transactions/sse-interpreter/1`);
         source.onerror = (err) => {
             this.notif$.error(err);
         };

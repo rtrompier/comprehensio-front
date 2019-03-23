@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { TransactionService } from 'src/app/common/transaction/transaction.service';
 import { Observable, merge, from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap, first } from 'rxjs/operators';
 import { Transaction } from 'src/app/common/transaction/transaction.model';
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-caregiver-start',
@@ -18,6 +19,8 @@ export class CaregiverStartPage implements OnInit {
   public to: string;
   public transactionId: string;
   public showWaitingBackdrop = false;
+
+  private loader: HTMLIonLoadingElement;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +41,7 @@ export class CaregiverStartPage implements OnInit {
     });
   }
 
-  public async waitForTranslator() {
+  public waitForTranslator() {
     const transaction = new Transaction();
     transaction.id = this.transactionId;
     transaction.state = 'PENDING';
@@ -46,15 +49,31 @@ export class CaregiverStartPage implements OnInit {
 
     const loading = this.loadingController.create({
       spinner: 'bubbles',
-      duration: 2000,
       message: 'Un interprète vous contactera sous 5 minutes...',
-      translucent: true,
       cssClass: 'custom-class custom-loading'
     });
 
     from(loading)
       .pipe(
-        switchMap(() => this.transactionService.updateTransaction(transaction))
-      ).subscribe((t) => this.router.navigate(['/caregiver/recap', t.id]) );
+        switchMap((loader) => {
+          this.loader = loader;
+          return loader.present();
+        }),
+        switchMap(() => this.transactionService.updateTransaction(transaction)),
+        switchMap(() => this.getIndicatorsStream()),
+        first()
+        // switchMap qui va attendre le translator ICI
+      ).subscribe((t) => {
+        this.loader.dismiss().then(() => this.loader = undefined);
+        this.router.navigate(['/caregiver/recap', t.id]);
+      });
+  }
+
+  public getIndicatorsStream(): Observable<any> {
+    return Observable.create((observer) => {
+      const eventSource = new EventSource(`${environment.api}/transactions/sse-caregiver/${this.transactionId}`);
+      eventSource.onmessage = (event) => observer.next(JSON.parse(event.data));
+      eventSource.onerror = (error) => observer.error(error);
+    });
   }
 }
