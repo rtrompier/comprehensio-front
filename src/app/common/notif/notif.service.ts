@@ -11,14 +11,15 @@ export class NotifService {
     private zone = new NgZone({ enableLongStackTrace: false });
 
     constructor() {
-        const source = new EventSource(`${environment.api}/transactions/stream-sse`);
+        const source = new EventSource(`${environment.api}/transactions/sse/1`);
         source.onerror = (err) => {
             this.notif$.error(err);
         };
         source.onmessage = (message: any) => {
-            // const tr = JSON.parse(message.data);
-            const tr = message.data;
-            this.notifs.push(new Transaction());
+            const tr = JSON.parse(message.data);
+            console.log(message);
+            // const tr = message.data;
+            this.notifs.push(tr);
             this.zone.run(() => this.notif$.next(tr));
         };
     }
