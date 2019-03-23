@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,20 +16,27 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifService } from './common/notif/notif.service';
+import { LoginComponent } from './login/login.component';
 
-export function initKeycloak(authService: AuthService) {
+export function initKeycloak(authService: AuthService, platform: Platform) {
+  debugger;
   return () => authService.init({
     url: environment.KEYCLOAK_URL,
     realm: environment.KEYCLOAK_REALM,
     clientId: environment.KEYCLOAK_CLIENT,
-    initOptions: {
+    initOptions: platform.is('mobile') ? {
+      adapter: 'cordova'
+    } : {
       flow: 'implicit'
     }
   });
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -44,7 +52,7 @@ export function initKeycloak(authService: AuthService) {
     AuthService,
     NotifService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: APP_INITIALIZER, useFactory: initKeycloak, multi: true, deps: [AuthService] },
+    { provide: APP_INITIALIZER, useFactory: initKeycloak, multi: true, deps: [AuthService, Platform] },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
