@@ -28,7 +28,7 @@ export class CaregiverHomePage implements OnInit {
     this.langService.getLangs()
       .subscribe((langs) => {
         this.langs = langs;
-        this.selectedFrom = this.langs.find((l) => l.id === 'eng');
+        this.selectedFrom = this.langs.find((l) => l.id === 'ara');
         this.selectedTo = this.langs.find((l) => l.id === 'fra');
       });
   }
