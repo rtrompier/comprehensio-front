@@ -19,7 +19,6 @@ import { NotifService } from './common/notif/notif.service';
 import { LoginComponent } from './login/login.component';
 
 export function initKeycloak(authService: AuthService, platform: Platform) {
-  debugger;
   return () => authService.init({
     url: environment.KEYCLOAK_URL,
     realm: environment.KEYCLOAK_REALM,

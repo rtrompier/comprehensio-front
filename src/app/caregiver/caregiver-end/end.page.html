@@ -1,1 +1,38 @@
-Caregiver end
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Recapitulatif appel</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            Veuillez évaluer la prestation que vous venez de recevoir.<br />
+            Cela nous aide à améliorer le service lors de vos prochaines visites.
+        </ion-card-content>
+    </ion-card>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>A propos de l'appel</ion-label>
+        </ion-list-header>
+        <ion-item>
+            <ion-label>Etait-il de qualité ?</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>L'envioronement était-il pro ?</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Avez-vous été dérangés ?</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>S'est-il déroulé sans coupure ? (réseau)</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Globalement êtes vous satisfait ?</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+<ion-button color="primary" [routerLink]="['/caregiver']">Terminer</ion-button>
