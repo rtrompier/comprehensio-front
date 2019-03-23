@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TransactionService } from 'src/app/common/transaction/transaction.service';
+import { switchMap } from 'rxjs/operators';
+import { Transaction } from 'src/app/common/transaction/transaction.model';
 
 @Component({
   selector: 'app-caregiver-end',
@@ -7,8 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CaregiverEndPage implements OnInit {
 
-  constructor() {
+  public transaction: Transaction;
+
+  constructor(
+    private transactionService: TransactionService,
+    private route: ActivatedRoute,
+  ) { }
+
+  public ngOnInit() {
+    this.route.params
+      .pipe(
+        switchMap((params) => this.transactionService.getTransaction(params.transactionId)),
+      )
+      .subscribe((transaction) => {
+        this.transaction = transaction;
+      });
   }
 
-  ngOnInit() { }
+  public getTimeInMinute() {
+    if (this.transaction.endDate && this.transaction.startDate) {
+      const diff = this.transaction.endDate.getTime() - this.transaction.startDate.getTime();
+      return Math.floor((diff / 1000) / 60);
+    } else {
+      return null;
+    }
+  }
 }

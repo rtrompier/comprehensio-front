@@ -1,11 +1,14 @@
 <ion-content>
     <ion-card>
         <ion-card-header>
-            <ion-card-subtitle>Recapitulatif appel</ion-card-subtitle>
+            <ion-card-subtitle>Récapitulatif appel</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
             Veuillez évaluer la prestation que vous venez de recevoir.<br />
             Cela nous aide à améliorer le service lors de vos prochaines visites.
+            <div *ngIf="transaction">
+                Temps total : {{getTimeInMinute()}}
+            </div>
         </ion-card-content>
     </ion-card>
     <ion-list>

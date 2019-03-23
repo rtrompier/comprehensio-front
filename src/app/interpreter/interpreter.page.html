@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <ion-menu-button color="light"></ion-menu-button>
     <span></span>
-    <ion-badge slot="end" color="light" (click)="openTransactions($event)">{{notifs?.length}}</ion-badge>
+    <ion-badge slot="end" [color]="notifs?.length == 0 ? 'light' : 'danger'" (click)="openTransactions($event)">{{notifs?.length}}</ion-badge>
   </mat-toolbar>
 </ion-header>
 
