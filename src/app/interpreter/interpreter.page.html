@@ -5,7 +5,7 @@
     </ion-buttons>
     
     <!-- <ion-icon name="notifications"></ion-icon> -->
-    <ion-badge slot="end" color="primary">{{notifs?.length}}</ion-badge>
+    <ion-badge slot="end" color="primary" (click)="openTransactions($event)">{{notifs?.length}}</ion-badge>
 
     <ion-title>
       Interpreter

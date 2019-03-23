@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { InterpreterPage } from './interpreter.page';
 import { TransactionResolver } from './interpreter-start/start.resolver';
+import { InterpreterNotifModule } from './interpreter-notifs/notifs.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    InterpreterNotifModule,
     RouterModule.forChild([
       {
         path: '',
