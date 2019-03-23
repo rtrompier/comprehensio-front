@@ -1,2 +1,8 @@
-hello
-<div *ngFor="let tr of transactions">{{tr.id}}</div>
+<ion-list *ngIf="transactions.length > 0">
+    <ion-item *ngFor="let tr of transactions">
+        <ion-label>Pokémon Yellow</ion-label>
+    </ion-item>
+</ion-list>
+<div *ngIf="transactions.length === 0">
+    Aucune demande en cours ...
+</div>
