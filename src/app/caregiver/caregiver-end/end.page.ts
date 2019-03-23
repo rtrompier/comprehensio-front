@@ -30,7 +30,7 @@ export class CaregiverEndPage implements OnInit {
 
   public getTimeInMinute() {
     if (this.transaction.endDate && this.transaction.startDate) {
-      const diff = this.transaction.endDate.getTime() - this.transaction.startDate.getTime();
+      const diff = new Date(this.transaction.endDate).getTime() - new Date(this.transaction.startDate).getTime();
       return Math.floor((diff / 1000) / 60);
     } else {
       return null;
