@@ -1,1 +1,9 @@
 
+:host {
+    mat-toolbar {
+        display:flex;
+        > span {
+            flex: 1 1 auto;
+        }
+    }
+}

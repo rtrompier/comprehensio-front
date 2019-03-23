@@ -1,16 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    
-    <!-- <ion-icon name="notifications"></ion-icon> -->
-    <ion-badge slot="end" color="primary" (click)="openTransactions($event)">{{notifs?.length}}</ion-badge>
-
-    <ion-title>
-      Interpreter
-    </ion-title>
-  </ion-toolbar>
+  <mat-toolbar color="primary">
+    <ion-menu-button color="light"></ion-menu-button>
+    <span></span>
+    <ion-badge slot="end" color="light" (click)="openTransactions($event)">{{notifs?.length}}</ion-badge>
+  </mat-toolbar>
 </ion-header>
 
 <ion-content>

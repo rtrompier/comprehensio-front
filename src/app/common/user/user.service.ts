@@ -12,4 +12,8 @@ export class UserService {
     public saveUser(user?: User): Observable<User> {
         return this.httpClient.post<User>(`${environment.api}/users`, user);
     }
+
+    public getUser(id: string): Observable<User> {
+        return this.httpClient.get<User>(`${environment.api}/users/${id}`);
+    }
 }

@@ -28,8 +28,8 @@ export class CaregiverHomePage implements OnInit {
     this.langService.getLangs()
       .subscribe((langs) => {
         this.langs = langs;
-        this.selectedFrom = this.langs.find((l) => l.id === 'fra');
-        this.selectedTo = this.langs.find((l) => l.id === 'eng');
+        this.selectedFrom = this.langs.find((l) => l.id === 'eng');
+        this.selectedTo = this.langs.find((l) => l.id === 'fra');
       });
   }
 

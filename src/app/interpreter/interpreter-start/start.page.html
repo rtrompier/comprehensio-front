@@ -1,9 +1,27 @@
 <ion-content>
-    {{transaction | json}}
 
-    <div *ngIf="transaction.state !== 'PENDING'">
-        Cette demande n'est plus active. L'un de vos confrères a été plus rapide ;).
-    </div>
+    <ion-card *ngIf="transaction.state !== 'PENDING'">
+        <ion-card-content style="color: #e74c3c;">
+            Cette demande n'est plus active. L'un de vos confrères a été plus rapide !
+            <div style="text-align: right;">
+                <ion-button color="danger" [routerLink]="['/interpreter']">Retour</ion-button>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="transaction.state === 'PENDING'">
+        <ion-card-header>
+            <ion-card-subtitle>Rappels</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            Cette demande concerne une interprétation de la langue "{{transaction.fromLang.label}}".<br />
+            Merci de vous assurer que vous êtes dans un endroit calme et que vous ne serez pas dérangé lors de l'appel avant de le commencer.<br />
+            pensez également à porter une tenue adequat.
+            <br />
+            <br />
+            Le bouton "Démarrer" lancera un appel en visioconférence avec le mendataire.
+        </ion-card-content>
+    </ion-card>
 
     <ion-button expand="block" color="secondary" (click)="startTransaction()" *ngIf="transaction.state === 'PENDING'">Démarrer</ion-button>
 </ion-content>

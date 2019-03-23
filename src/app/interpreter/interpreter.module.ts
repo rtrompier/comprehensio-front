@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { InterpreterPage } from './interpreter.page';
 import { TransactionResolver } from './interpreter-start/start.resolver';
@@ -14,6 +15,7 @@ import { InterpreterNotifModule } from './interpreter-notifs/notifs.module';
     FormsModule,
     IonicModule,
     InterpreterNotifModule,
+    MatToolbarModule,
     RouterModule.forChild([
       {
         path: '',

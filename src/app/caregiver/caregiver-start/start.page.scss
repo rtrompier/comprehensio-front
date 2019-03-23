@@ -3,3 +3,14 @@ ion-backdrop {
     opacity: 0.75;
     z-index: 100;
 }
+
+:host {
+    ion-card-content {
+        h1 {
+            display: flex;
+            ion-icon {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}

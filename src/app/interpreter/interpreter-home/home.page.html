@@ -1,10 +1,20 @@
 <ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Rappels</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            Veillez à ne mettre la case disponible seulement si vous pouvez répondre à une demande sous 10
+            minutes.<br />
+            Tachez d'être dans un endroit calme<br />
+        </ion-card-content>
+    </ion-card>
     <ion-button expand="block" (click)="updateAvalaibility(true)">
         <ion-icon *ngIf="user.isAvailable" slot="start" name="checkmark"></ion-icon>
         Je suis disponible
     </ion-button>
-    <ion-button expand="block" color="secondary"  (click)="updateAvalaibility(false)">
-        <ion-icon  *ngIf="!user.isAvailable" slot="start" name="checkmark"></ion-icon>
+    <ion-button expand="block" color="secondary" (click)="updateAvalaibility(false)">
+        <ion-icon *ngIf="!user.isAvailable" slot="start" name="checkmark"></ion-icon>
         Je suis indisponible
     </ion-button>
 </ion-content>
