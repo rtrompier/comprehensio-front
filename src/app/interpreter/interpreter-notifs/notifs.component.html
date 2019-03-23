@@ -1,5 +1,5 @@
 <ion-list *ngIf="transactions.length > 0">
-    <ion-item *ngFor="let tr of transactions">
+    <ion-item *ngFor="let tr of transactions" [routerLink]="['/interpreter/start', tr.id]" (click)="close()">
         <ion-label *ngIf="tr.fromLang && tr.toLang; else elseLabel">{{tr.fromLang.label}} -> {{tr.toLang.label}} </ion-label>
         <ng-template #elseLabel>Pas de label</ng-template>
     </ion-item>
