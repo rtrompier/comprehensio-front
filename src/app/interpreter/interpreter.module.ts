@@ -23,8 +23,8 @@ import { InterpreterNotifModule } from './interpreter-notifs/notifs.module';
         children: [
           { path: 'home', loadChildren: './interpreter-home/home.module#InterpreterHomePageModule' },
           { path: 'start/:id', loadChildren: './interpreter-start/start.module#InterpreterStartPageModule', resolve: { transaction: TransactionResolver } },
-          { path: 'recap', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule' },
-          { path: 'end', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule' },
+          { path: 'recap/:id', loadChildren: './interpreter-recap/recap.module#InterpreterRecapPageModule' },
+          { path: 'end/:id', loadChildren: './interpreter-end/end.module#InterpreterEndPageModule' },
           { path: '**', redirectTo: 'home' },
         ]
       },

@@ -32,8 +32,6 @@ export class InterpreterStartPage implements OnInit {
     this.transaction.receiver = this.authService.getUserProfile();
     this.transactionService.updateTransaction(this.transaction).subscribe((transaction) => {
       this.transaction = transaction;
-      // call the caregiver
-      window.open(`facetime://${transaction.caller.email}`, '_blank');
       this.router.navigate(['/interpreter/end', transaction.id]);
     });
   }

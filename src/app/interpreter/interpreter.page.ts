@@ -19,10 +19,7 @@ export class InterpreterPage implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.notifService.notif$.subscribe((notif) => {
-      console.log(notif);
-      this.notifs.push(notif);
-    });
+    this.notifs = this.notifService.notifs;
   }
 
   public async openTransactions(ev: any) {

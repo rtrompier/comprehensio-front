@@ -15,12 +15,21 @@ export class NotifService {
         source.onerror = (err) => {
             this.notif$.error(err);
         };
-        source.onmessage = (message: any) => {
-            const tr = JSON.parse(message.data);
-            console.log(message);
-            // const tr = message.data;
+        source.onmessage = this.onMessage.bind(this);
+    }
+
+    private onMessage = (message: any) => {
+        const tr: Transaction = JSON.parse(message.data);
+        console.log(message);
+        // const tr = message.data;
+        if (tr.state === 'PENDING') {
             this.notifs.push(tr);
-            this.zone.run(() => this.notif$.next(tr));
-        };
+        } else {
+            const tmp = this.notifs.findIndex((t) => t.id === tr.id);
+            if (tmp > -1) {
+                this.notifs.splice(tmp, 1);
+            }
+        }
+        this.zone.run(() => this.notif$.next(tr));
     }
 }

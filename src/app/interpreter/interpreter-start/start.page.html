@@ -23,5 +23,5 @@
         </ion-card-content>
     </ion-card>
 
-    <ion-button expand="block" color="secondary" (click)="startTransaction()" *ngIf="transaction.state === 'PENDING'">Démarrer</ion-button>
+    <ion-button [href]="'facetime://' + transaction.caller.email" expand="block" color="secondary" (click)="startTransaction()" *ngIf="transaction.state === 'PENDING'">Démarrer</ion-button>
 </ion-content>
