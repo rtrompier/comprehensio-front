@@ -28,10 +28,10 @@ export class CaregiverEndPage implements OnInit {
       });
   }
 
-  public getTimeInMinute() {
+  public getTimeInSec() {
     if (this.transaction.endDate && this.transaction.startDate) {
       const diff = new Date(this.transaction.endDate).getTime() - new Date(this.transaction.startDate).getTime();
-      return Math.floor((diff / 1000) / 60);
+      return Math.floor((diff / 1000));
     } else {
       return null;
     }
