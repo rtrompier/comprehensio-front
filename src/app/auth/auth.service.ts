@@ -34,7 +34,7 @@ export class AuthService {
         this.keycloak = Keycloak(this.config);
 
         this.keycloak.onTokenExpired = this.onTokenExpired.bind(this);
-        this.keycloak.onAuthSuccess = this.onAuthSuccess.bind(this);
+        // this.keycloak.onAuthSuccess = this.onAuthSuccess.bind(this);
 
         this.config.initOptions.token = sessionStorage.getItem(this.TOKEN_KEY);
         this.config.initOptions.refreshToken = sessionStorage.getItem(this.REFRESH_TOKEN_KEY);
@@ -85,6 +85,7 @@ export class AuthService {
 
     private onAuthSuccess(): Promise<any> {
         this.keycloak.token = this.getAccessToken();
+        debugger;
         return this.httpClient.get<User>(`${environment.api}/login`)
             .pipe(
                 tap((usr: User) => {
