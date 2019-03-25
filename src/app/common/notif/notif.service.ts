@@ -17,7 +17,8 @@ export class NotifService {
 
     public listen(): Observable<Transaction> {
         return Observable.create((observer) => {
-            const eventSource = new EventSource(`${environment.api}/transactions/sse-interpreter/1`);
+            const test = new Date().getTime();
+            const eventSource = new EventSource(`${environment.api}/transactions/sse-interpreter/${test}`);
             eventSource.onmessage = (event) => observer.next(this.onMessage(event));
             eventSource.onerror = (error) => {
                 console.error(error);
