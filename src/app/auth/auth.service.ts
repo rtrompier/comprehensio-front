@@ -85,7 +85,6 @@ export class AuthService {
 
     private onAuthSuccess(): Promise<any> {
         this.keycloak.token = this.getAccessToken();
-        debugger;
         return this.httpClient.get<User>(`${environment.api}/login`)
             .pipe(
                 tap((usr: User) => {
