@@ -8,6 +8,6 @@ services:
     environment:
     - BACKEND_URI=http://remy-trompier.ch:8123
     ports:
-      - 4200:4200
+      - 8124:4200
     deploy:
         replicas: 1
