@@ -20,7 +20,7 @@ export class NotifService {
             const test = new Date().getTime();
             const eventSource = new EventSource(`${environment.api}/transactions/sse-interpreter/${test}`);
             eventSource.onmessage = (event) => {
-                this.zone.run(() => observer.next(this.onMessage(event)));
+                observer.next(this.onMessage(event));
             };
             eventSource.onerror = (error) => {
                 console.error(error);
