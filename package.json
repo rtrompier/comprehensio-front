@@ -8,6 +8,7 @@
     "start": "ng serve --host=0.0.0.0 --disable-host-check",
     "start:ios": "ionic cordova run ios -l -- --buildFlag='-UseModernBuildSystem=0' --verbose",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "build:ios": "ionic cordova build ios --prod -- --buildFlag='-UseModernBuildSystem=0'",
     "test": "ng test",
     "lint": "ng lint",
