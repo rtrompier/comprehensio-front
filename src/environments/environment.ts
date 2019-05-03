@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://192.168.43.126:8080',
+  api: 'http://localhost:8080',
   KEYCLOAK_URL: 'http://remy-trompier.ch:9000/auth',
   KEYCLOAK_REALM: 'test',
   KEYCLOAK_CLIENT: 'comprehensio',
