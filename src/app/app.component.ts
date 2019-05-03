@@ -4,13 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { AuthService } from './auth/auth.service';
 import { NotifService } from './common/notif/notif.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Home',
@@ -39,5 +40,15 @@ export class AppComponent {
 
   logout() {
     this.authService.logout('/');
+  }
+
+  ngOnInit() {
+    const eventSource = new EventSource(`${environment.api}/transactions/subscribe`);
+    eventSource.onmessage = (event) => {
+      console.log('OnMessage', event);
+    };
+    eventSource.onerror = (error) => {
+      console.error('OnError', error, eventSource);
+    };
   }
 }
